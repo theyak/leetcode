@@ -22,7 +22,7 @@ class Solution {
         $map = [];
         
         foreach ($nums as $k => $num) {
-			// Check if answer already exists
+            // Check if answer already exists
             $other = $target - $num;
             if (isset($map[$other])) {
                 return [$map[$other], $k];
