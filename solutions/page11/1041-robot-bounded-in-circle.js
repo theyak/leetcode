@@ -10,10 +10,9 @@
  *   run in O(n) time.
  */
 
-/**
- * @param {string} instructions
- * @return {boolean}
- */
+
+// Change in direction maps.
+// Did you know the word NEWS contains all directions?
 const left = {
     "N": "W",
     "W": "S",
@@ -26,6 +25,8 @@ const right = {
     "S": "W",
     "W": "N",
 };
+
+// Movement matrix
 const matrix = {
     "N": [0, 1],
     "S": [0, -1],
@@ -33,6 +34,10 @@ const matrix = {
     "E": [1, 0],
 };
 
+/**
+ * @param {string} instructions
+ * @return {boolean}
+ */
 var isRobotBounded = function(instructions) {
     let positions = [];
     let direction = "N";
