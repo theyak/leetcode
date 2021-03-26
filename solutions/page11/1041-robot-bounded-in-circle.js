@@ -4,10 +4,10 @@
  * Explanation: https://leetcode.com/problems/robot-bounded-in-circle/discuss/1127532/Java-Solution-(with-explanation)
  * 
  * Notes: 
- * - The hints given here basically give away the solution, try not to read them and
- *   instead sketch out some possibilities.
- * - There may be some "faster" solutions, but likely less readable. They all
- *   run in O(n) time.
+ * - The hints given on the problem page basically give away the solution,
+ *   try not to read them and instead sketch out some possibilities.
+ * - There may be some "faster" solutions, but likely less readable.
+ *   They all run in O(n) time.
  */
 
 
