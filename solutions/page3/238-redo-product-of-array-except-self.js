@@ -34,9 +34,30 @@ var productExceptSelf = function(nums) {
     return answer;
 };
 
-// Found this in the discission. This is the O(1) verion.
-// I definitely did not come up with this on my own.
+// Found this in the solutions. This is a memory O(1) version.
+// It's basically what I did above, just doing the final
+// multiplication while computing the right side.
 var productExceptSelfO1 = function(nums) {
+    var answer = [];
+    let len = nums.length;
+    
+    answer[0] = 1;
+    for (let i = 1; i < nums.length; i++) {
+        answer[i] = nums[i-1] * answer[i-1];
+    }
+    
+    let R = 1
+    for (let i = nums.length - 1; i >= 0; i--) {
+        answer[i] *= R;
+        R *= nums[i]
+    }
+    
+    return answer;
+};
+
+// Found this in the discussion. This is a memory O(1) version.
+// I definitely did not come up with this on my own.
+var productExceptSelfO1v2 = function(nums) {
     let answer = new Array(nums.length);
     answer = answer.fill(1, 0, nums.length);
     
