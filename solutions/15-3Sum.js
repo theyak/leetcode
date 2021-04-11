@@ -1,4 +1,9 @@
 /**
+ * 15. 3Sum
+ * URL: https://leetcode.com/problems/3sum/
+ * Leetcode Level: Medium
+ * My Level: Easy (partly because I already knew this problem)
+ *
  * Given an array nums of n integers, are there elements a, b, c 
  * in nums such that a + b + c = 0? Find all unique triplets in the 
  * array which gives the sum of zero.
@@ -21,7 +26,7 @@ var threeSum = function(nums) {
         return [];
     }
 
-    // Srting will allow us to keep front and back pointers
+    // Sorting will allow us to keep front and back pointers
     nums.sort((a, b) => a - b);
 
     for (let i = 0; i <= nums.length - 2; i++) {
