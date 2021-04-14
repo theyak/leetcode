@@ -35,31 +35,31 @@ var threeSum = function(nums) {
             continue;
         }
         
-        let front = i + 1;
+        let mid = i + 1;
         let back = nums.length - 1;
        
-        while (front < back) {
-            const sum = nums[i] + nums[front] + nums[back];
+        while (mid < back) {
+            const sum = nums[i] + nums[mid] + nums[back];
             
             // Oh lookie! We found a triplet
             if (sum === 0) {
-                sums.push([nums[i], nums[front], nums[back]]);
+                sums.push([nums[i], nums[mid], nums[back]]);
                 
-                front++;
+                mid++;
                 back--;
                 
                 // Skip past duplicate numbers.
                 // This will prevent us from storing the triplet more than once
-                while (front < back && nums[front] === nums[front - 1]) {
-                    front++;
+                while (mid < back && nums[mid] === nums[mid - 1]) {
+                    mid++;
                 }
-                while (front < back && nums[back] === nums[back + 1]) {
+                while (mid < back && nums[back] === nums[back + 1]) {
                     back--;
                 }
             } else if (sum > 0) {
                 back--;
             } else if (sum < 0) {
-                front++;
+                mid++;
             }   
         }
     }
