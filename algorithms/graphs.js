@@ -54,7 +54,7 @@ class Graph {
 	/**
 	 * Adds a Vertex to the graph.
 	 *
-	 * @param {string|number} val
+	 * @param {string} val
 	 */
 	addVertex(val) {
 		let vertex = new Vertex(val);
@@ -69,18 +69,17 @@ class Graph {
 	 * @param {Vertex|string} v2 Vertex to connect edge from
 	 */
 	addEdge(v1, v2) {
-		if (typeof(v1) === "string") {
-			v1 = this.verticies.get(v1);
-		}
-		if (typeof v2 === "string") {
-			v2 = this.verticies.get(v2);
-		}
+		v1 = this.getVertex(v1);
+		v2 = this.getVertex(v2);
 
 		if (v1 && v2) {
 			v1.addEdge(v2);
 		}
 	}
 
+	/**
+	 * Reset all traversal information
+	 */
 	reset() {
 		for (let v of this.verticies) {
 			v[1].color = null;
@@ -90,7 +89,10 @@ class Graph {
 	}
 
 	/**
-	 * Determines if a graph is cyclic
+	 * Determines if a graph is cyclic by iterating through
+	 * all nodes as a start node and following all paths.
+	 *
+	 * @return {boolean}
 	 */
 	isCyclic() {
 		this.reset();
@@ -110,13 +112,11 @@ class Graph {
 	 * Check to see if a cycle is formed when traversing graph
 	 * from a single vertex.
 	 *
-	 * @param {Vertex} v
+	 * @param {Vertex|string} v
 	 * @returns boolean
 	 */
 	isCyclicFromVertex(v) {
-		if (typeof v === "string") {
-			v = this.getVertex(v);
-		}
+		v = this.getVertex(v);
 
 		if (v.visited) {
 			return false;
@@ -139,10 +139,23 @@ class Graph {
 		return false;
 	}
 
-	dfs(start, end, path = []) {
-		this.reset();
+	/**
+	 * Perform a depth first traversal on graph.
+	 * 
+	 * @param {Vertex|string} start The node to start looking from
+	 * @param {Vertex|string} end Node to look for
+	 * @return {Array[Vertex[]]} All found paths
+	 */
+	dfs(start, end) {
+		// All found paths
 		const paths = [];
+		
+		start = this.getVertex(start);
+		end = this.getVertex(end);
+		
+		this.reset();
 		helper(start);
+	
 		return paths;
 
 		function helper(v, path = []) {
@@ -168,11 +181,10 @@ class Graph {
 	/**
 	 * Perform a breadth first traversal on graph.
 	 * BFS allows to find the shortest path in a graph
-	 * This just tells us if we can reach one node from another.
 	 *
-	 * @param {Vertex} start Vertex to start at
-	 * @param {Vertex} end The desired end goal/destination
-	 * @param {Vertex[]} Path taken to reach node.
+	 * @param {Vertex|string} start Vertex to start at
+	 * @param {Vertex|string} end The desired end goal/destination
+	 * @return {Vertex[]} Path taken to reach node.
 	 */
 	bfs(start, end) {
 		this.reset();
